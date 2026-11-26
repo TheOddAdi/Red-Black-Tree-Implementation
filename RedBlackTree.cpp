@@ -109,6 +109,21 @@ void RedBlackTree::insertFixup(Node* node) {
     root->color = Color::Black;
 }
 
+std::vector<int> RedBlackTree::inOrder() const {
+    std::vector<int> keys;
+    appendInOrder(root, keys);
+    return keys;
+}
+
+void RedBlackTree::appendInOrder(const Node* node, std::vector<int>& keys) {
+    if (node == nullptr) {
+        return;
+    }
+    appendInOrder(node->left, keys);
+    keys.push_back(node->data);
+    appendInOrder(node->right, keys);
+}
+
 RedBlackTree::Node* RedBlackTree::search(int data) {
     if (root == nullptr) {
         return nullptr;

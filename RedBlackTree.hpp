@@ -1,3 +1,5 @@
+#include <vector>
+
 class RedBlackTree {
 private:
     enum class Color {
@@ -15,11 +17,14 @@ private:
     void rotateLeft(Node* node);
     void rotateRight(Node* node);
     void deleteFixup(Node* node, Node* parent);
+    static void appendInOrder(const Node* node, std::vector<int>& keys);
 public:
     RedBlackTree() {
         root = nullptr;
     }
     void insert(int data);
+    // Return all keys in ascending order, including duplicates.
+    std::vector<int> inOrder() const;
     RedBlackTree::Node* search(int data);
     RedBlackTree::Node* getRoot();
     RedBlackTree::Node* getMin(RedBlackTree::Node* node);
